@@ -1,0 +1,803 @@
+{
+   "openapi":"3.0.0",
+   "info":{
+      "title":"Rekord API",
+      "description":"Rekord api definition",
+      "version":"1.0.0"
+   },
+   "servers":[
+      {
+         "url":"/v1"
+      }
+   ],
+   "paths":{
+      "/rekord":{
+         "get":{
+            "description":"",
+            "parameters":[
+               {
+                  "name":"page",
+                  "in":"query",
+                  "description":"Page number (default 1)",
+                  "schema":{
+                     "type":"string"
+                  }
+               },
+               {
+                  "name":"limit",
+                  "in":"query",
+                  "description":"Page size (default 10)",
+                  "schema":{
+                     "type":"string"
+                  }
+               },
+               {
+                  "name":"group",
+                  "in":"query",
+                  "description":"group name",
+                  "schema":{
+                     "type":"string"
+                  }
+               }
+            ],
+            "responses":{
+               "200":{
+                  "description":"All rekords",
+                  "content":{
+                     "application/json":{
+                        "schema":{
+                           "$ref":"#/components/schemas/PaginatedRekordResponse"
+                        }
+                     }
+                  }
+               }
+            }
+         },
+         "post":{
+            "description":"",
+            "responses":{
+               "201":{
+                  "description":"Rekord successfully created",
+                  "content":{
+                     "application/json":{
+                        "schema":{
+                           "$ref":"#/components/schemas/Rekord"
+                        }
+                     }
+                  }
+               },
+               "400":{
+                  "description":"Bad Request - Invalid payloadType value",
+                  "content":{
+                     "application/json":{
+                        "schema":{
+                           "type":"object",
+                           "properties":{
+                              "message":{
+                                 "type":"string",
+                                 "example":"Invalid payloadType. Allowed values: JSON, FILE"
+                              }
+                           }
+                        }
+                     }
+                  }
+               }
+            },
+            "requestBody":{
+               "required":true,
+               "content":{
+                  "application/json":{
+                     "schema":{
+                        "$ref":"#/components/schemas/RekordRequest"
+                     },
+                     "examples":{
+                        "default":{
+                           "$ref":"#/components/examples/RekordRequestExample"
+                        }
+                     }
+                  }
+               }
+            }
+         },
+         "put":{
+            "description":"",
+            "responses":{
+               "200":{
+                  "description":"OK"
+               },
+               "403":{
+                  "description":"Forbidden - this is not intended for public use"
+               }
+            }
+         }
+      },
+      "/rekord/{id}":{
+         "get":{
+            "description":"",
+            "parameters":[
+               {
+                  "name":"id",
+                  "in":"path",
+                  "required":true,
+                  "schema":{
+                     "type":"string"
+                  },
+                  "description":"ID of the rekord"
+               }
+            ],
+            "responses":{
+               "200":{
+                  "description":"Rekord by ID",
+                  "content":{
+                     "application/json":{
+                        "schema":{
+                           "$ref":"#/components/schemas/Rekord"
+                        }
+                     }
+                  }
+               },
+               "404":{
+                  "description":"Rekord not found"
+               }
+            }
+         }
+      },
+      "/rekord/{id}/meta":{
+         "get":{
+            "description":"",
+            "parameters":[
+               {
+                  "name":"id",
+                  "in":"path",
+                  "required":true,
+                  "schema":{
+                     "type":"string"
+                  },
+                  "description":"ID of the rekord"
+               }
+            ],
+            "responses":{
+               "200":{
+                  "description":"Metadata of a rekord by ID",
+                  "content":{
+                     "application/json":{
+                        "schema":{
+                           "$ref":"#/components/schemas/Rekord"
+                        }
+                     }
+                  }
+               },
+               "404":{
+                  "description":"Rekord not found"
+               }
+            }
+         }
+      },
+      "/rekord/payload-url":{
+         "post":{
+            "description":"",
+            "responses":{
+               "200":{
+                  "description":"OK"
+               },
+               "201":{
+                  "description":"Url successfully created",
+                  "content":{
+                     "application/json":{
+                        "schema":{
+                           "type":"object",
+                           "properties":{
+                              "key":{
+                                 "type":"string",
+                                 "example":"filename-renamed.pdf"
+                              },
+                              "url":{
+                                 "type":"string",
+                                 "example":"http://rekord.io/upload-a-b-c"
+                              }
+                           },
+                           "required":[
+                              "key",
+                              "url"
+                           ]
+                        }
+                     }
+                  }
+               },
+               "400":{
+                  "description":"Bad Request"
+               }
+            },
+            "requestBody":{
+               "required":true,
+               "content":{
+                  "application/json":{
+                     "schema":{
+                        "type":"object",
+                        "properties":{
+                           "key":{
+                              "type":"string",
+                              "example":"filename"
+                           },
+                           "contentType":{
+                              "type":"string",
+                              "example":"application/pdf"
+                           },
+                           "workspace":{
+                              "type":"string",
+                              "example":"aaaaa-bbbbbb-cccc-dddd"
+                           }
+                        },
+                        "required":[
+                           "key",
+                           "workspace"
+                        ]
+                     }
+                  }
+               }
+            }
+         }
+      },
+      "/rekord/{id}/payload-url":{
+         "get":{
+            "description":"",
+            "parameters":[
+               {
+                  "name":"id",
+                  "in":"path",
+                  "required":true,
+                  "schema":{
+                     "type":"string"
+                  }
+               }
+            ],
+            "responses":{
+               "200":{
+                  "description":"Successful",
+                  "content":{
+                     "application/json":{
+                        "schema":{
+                           "type":"string"
+                        }
+                     }
+                  }
+               },
+               "404":{
+                  "description":"Not Found"
+               }
+            }
+         }
+      },
+      "/workspace":{
+         "get":{
+            "description":"",
+            "parameters":[
+               {
+                  "name":"page",
+                  "in":"query",
+                  "description":"Page number (default 1)",
+                  "schema":{
+                     "type":"string"
+                  }
+               },
+               {
+                  "name":"limit",
+                  "in":"query",
+                  "description":"Page size (default 10)",
+                  "schema":{
+                     "type":"string"
+                  }
+               }
+            ],
+            "responses":{
+               "200":{
+                  "description":"All workspaces",
+                  "content":{
+                     "application/json":{
+                        "schema":{
+                           "$ref":"#/components/schemas/PaginatedWorkspaceResponse"
+                        }
+                     }
+                  }
+               }
+            }
+         },
+         "post":{
+            "summary":"Creates a workspace",
+            "description":"",
+            "responses":{
+               "201":{
+                  "description":"Workspace successfully created",
+                  "content":{
+                     "application/json":{
+                        "schema":{
+                           "$ref":"#/components/schemas/Workspace"
+                        }
+                     }
+                  }
+               },
+               "400":{
+                  "description":"Bad Request - already exists",
+                  "content":{
+                     "application/json":{
+                        "schema":{
+                           "type":"object",
+                           "properties":{
+                              "message":{
+                                 "type":"string",
+                                 "example":"A workspace with the same name already exists"
+                              }
+                           }
+                        }
+                     }
+                  }
+               }
+            },
+            "requestBody":{
+               "required":true,
+               "content":{
+                  "application/json":{
+                     "schema":{
+                        "$ref":"#/components/schemas/WorkspaceRequest"
+                     },
+                     "examples":{
+                        "default":{
+                           "$ref":"#/components/examples/WorkspaceRequestExample"
+                        }
+                     }
+                  }
+               }
+            }
+         }
+      },
+      "/workspace/{id}":{
+         "get":{
+            "description":"",
+            "parameters":[
+               {
+                  "name":"id",
+                  "in":"path",
+                  "required":true,
+                  "schema":{
+                     "type":"string"
+                  },
+                  "description":"ID of the workspace"
+               }
+            ],
+            "responses":{
+               "200":{
+                  "description":"Workspace found",
+                  "content":{
+                     "application/json":{
+                        "schema":{
+                           "$ref":"#/components/schemas/Workspace"
+                        }
+                     }
+                  }
+               },
+               "404":{
+                  "description":"Workspace not found"
+               }
+            }
+         },
+         "delete":{
+            "summary":"Deletes a workspace",
+            "description":"",
+            "parameters":[
+               {
+                  "name":"id",
+                  "in":"path",
+                  "required":true,
+                  "schema":{
+                     "type":"string"
+                  },
+                  "description":"ID of the workspace to be deleted"
+               }
+            ],
+            "responses":{
+               "204":{
+                  "description":"Workspace deleted (No Content)"
+               },
+               "403":{
+                  "description":"Operation not allowed"
+               },
+               "404":{
+                  "description":"Workspace not found"
+               },
+               "500":{
+                  "description":"Internal server error"
+               }
+            }
+         },
+         "put":{
+            "summary":"Updates a workspace",
+            "description":"",
+            "parameters":[
+               {
+                  "name":"id",
+                  "in":"path",
+                  "required":true,
+                  "schema":{
+                     "type":"string"
+                  },
+                  "description":"ID of the workspace to be updated"
+               }
+            ],
+            "responses":{
+               "200":{
+                  "description":"Workspace updated",
+                  "content":{
+                     "application/json":{
+                        "schema":{
+                           "$ref":"#/components/schemas/Workspace"
+                        }
+                     }
+                  }
+               },
+               "403":{
+                  "description":"Operation not allowed"
+               },
+               "404":{
+                  "description":"Workspace not found"
+               },
+               "500":{
+                  "description":"Internal server error"
+               }
+            },
+            "requestBody":{
+               "required":true,
+               "content":{
+                  "application/json":{
+                     "schema":{
+                        "$ref":"#/components/schemas/WorkspaceRequest"
+                     },
+                     "examples":{
+                        "default":{
+                           "$ref":"#/components/examples/WorkspaceEditRequestExample"
+                        }
+                     }
+                  }
+               }
+            }
+         }
+      }
+   },
+   "components":{
+      "examples":{
+         "RekordRequestExample":{
+            "value":{
+               "payload":{
+                  "a":"a-val",
+                  "b":"b-val"
+               },
+               "issuedAt":"2025-03-02T18:43:01.000Z",
+               "group":"my source",
+               "description":"description example",
+               "originalFileName":"the original name of the file uploaded onto the payload field",
+               "payloadType":"JSON",
+               "workspace":"123",
+               "file":"abc-myfile.pdf"
+            }
+         },
+         "WorkspaceRequestExample":{
+            "value":{
+               "name":"My workspace name",
+               "blockchain":"BSV"
+            }
+         },
+         "WorkspaceEditRequestExample":{
+            "value":{
+               "name":"New name",
+               "blockchain":"new blockchain"
+            }
+         }
+      },
+      "schemas":{
+         "Rekord":{
+            "type":"object",
+            "required":[
+               "id",
+               "issuedAt",
+               "workspace",
+               "description",
+               "payloadType"
+            ],
+            "properties":{
+               "id":{
+                  "type":"string",
+                  "readOnly":true
+               },
+               "createdBy":{
+                  "type":"string"
+               },
+               "hash":{
+                  "type":"string"
+               },
+               "workspace":{
+                  "type":"string"
+               },
+               "customer":{
+                  "type":"string"
+               },
+               "blockchainMeta":{
+                  "type":"object",
+                  "description":"Contains bc metadata associated with the rekord",
+                  "properties":{
+                     "transactionId":{
+                        "type":"string",
+                        "description":"ID of the transaction"
+                     },
+                     "transactionTs":{
+                        "type":"string",
+                        "description":"Timestamp of the transaction"
+                     },
+                     "merklePath":{
+                        "type":"string",
+                        "description":"Last merkle path"
+                     }
+                  },
+                  "required":[
+                     "transactionId",
+                     "transactionTs"
+                  ]
+               },
+               "issuedAt":{
+                  "type":"string",
+                  "format":"date-time",
+                  "description":"Timestamp when the rekord was issued",
+                  "example":"2025-03-02T18:43:01.000Z"
+               },
+               "group":{
+                  "type":"string",
+                  "description":"Source of the rekord",
+                  "example":"my source"
+               },
+               "description":{
+                  "type":"string",
+                  "description":"Description of the rekord",
+                  "example":"description example"
+               },
+               "originalFileName":{
+                  "type":"string",
+                  "nullable":true,
+                  "description":"Original file name if applicable",
+                  "example":"filename.pdf"
+               },
+               "payloadType":{
+                  "type":"string",
+                  "enum":[
+                     "JSON",
+                     "FILE"
+                  ],
+                  "description":"Type of payload (e.g., JSON, PDF)",
+                  "example":"JSON"
+               },
+               "file":{
+                  "type":"string",
+                  "description":"filename associated with this rekord",
+                  "example":"file.pdf"
+               }
+            }
+         },
+         "RekordRequest":{
+            "type":"object",
+            "required":[
+               "payload",
+               "issuedAt",
+               "source",
+               "description",
+               "payloadType"
+            ],
+            "additionalProperties":false,
+            "properties":{
+               "payload":{
+                  "type":"object",
+                  "description":"The actual content of the rekord",
+                  "example":{
+                     "key1":"value1",
+                     "key2":"value2"
+                  }
+               },
+               "issuedAt":{
+                  "type":"string",
+                  "format":"date-time",
+                  "description":"Timestamp when the rekord was issued",
+                  "example":"2025-03-02T18:43:01.000Z"
+               },
+               "group":{
+                  "type":"string",
+                  "description":"Source/Group of the rekord",
+                  "example":"my source/group",
+                  "minLength":3,
+                  "maxLength":50,
+                  "pattern":"^[a-zA-Z0-9 _-]+$"
+               },
+               "workspace":{
+                  "type":"string",
+                  "description":"Rekord workspace",
+                  "example":"6f371e91-6ab2-4b3f-8dcd-f92048603db1",
+                  "format":"uuid"
+               },
+               "description":{
+                  "type":"string",
+                  "description":"Description of the rekord",
+                  "example":"description example",
+                  "minLength":3,
+                  "maxLength":50
+               },
+               "originalFileName":{
+                  "type":"string",
+                  "nullable":true,
+                  "description":"Original file name if applicable",
+                  "example":"filename.pdf",
+                  "maxLength":255
+               },
+               "payloadType":{
+                  "type":"string",
+                  "enum":[
+                     "JSON",
+                     "FILE"
+                  ],
+                  "description":"Type of payload (e.g., JSON, FILE)",
+                  "example":"JSON"
+               },
+               "file":{
+                  "type":"string",
+                  "description":"file key returned by the upload-url endpoint",
+                  "example":"myfilekey.pdf",
+                  "nullable":true
+               }
+            }
+         },
+         "Workspace":{
+            "type":"object",
+            "required":[
+               "name",
+               "slug"
+            ],
+            "properties":{
+               "id":{
+                  "type":"string",
+                  "readOnly":true
+               },
+               "name":{
+                  "type":"string"
+               },
+               "slug":{
+                  "type":"string"
+               },
+               "blockchain":{
+                  "type":"string"
+               }
+            }
+         },
+         "WorkspaceRequest":{
+            "type":"object",
+            "required":[
+               "name"
+            ],
+            "additionalProperties":false,
+            "properties":{
+               "name":{
+                  "type":"string",
+                  "description":"The name of the workspace",
+                  "example":"workspace name"
+               },
+               "blockchain":{
+                  "type":"string",
+                  "description":"the blockchain code associated with the workspace",
+                  "example":"BSV"
+               }
+            }
+         },
+         "RekordHashes":{
+            "type":"object",
+            "description":"Contains rekord hash values",
+            "properties":{
+               "globalHash":{
+                  "type":"string",
+                  "description":"Global hash value"
+               },
+               "payloadHash":{
+                  "type":"string",
+                  "description":"Payload hash value"
+               }
+            },
+            "required":[
+               "globalHash",
+               "payloadHash"
+            ]
+         },
+         "BlockchainMeta":{
+            "type":"object",
+            "description":"Contains bc metadata associated with the rekord",
+            "properties":{
+               "transactionId":{
+                  "type":"string",
+                  "description":"ID of the transaction"
+               },
+               "transactionTs":{
+                  "type":"string",
+                  "description":"Timestamp of the transaction"
+               },
+               "merklePath":{
+                  "type":"string",
+                  "description":"Last merkle path"
+               }
+            },
+            "required":[
+               "transactionId",
+               "transactionTs"
+            ]
+         },
+         "PaginatedRekordResponse":{
+            "type":"object",
+            "required":[
+               "items",
+               "total",
+               "page",
+               "limit",
+               "totalPages"
+            ],
+            "properties":{
+               "items":{
+                  "type":"array",
+                  "items":{
+                     "$ref":"#/components/schemas/Rekord"
+                  }
+               },
+               "total":{
+                  "type":"integer",
+                  "minimum":0
+               },
+               "page":{
+                  "type":"integer",
+                  "minimum":1
+               },
+               "limit":{
+                  "type":"integer",
+                  "minimum":1
+               },
+               "totalPages":{
+                  "type":"integer",
+                  "minimum":1
+               }
+            }
+         },
+         "PaginatedWorkspaceResponse":{
+            "type":"object",
+            "required":[
+               "items",
+               "total",
+               "page",
+               "limit",
+               "totalPages"
+            ],
+            "properties":{
+               "items":{
+                  "type":"array",
+                  "items":{
+                     "$ref":"#/components/schemas/Workspace"
+                  }
+               },
+               "total":{
+                  "type":"integer",
+                  "minimum":0
+               },
+               "page":{
+                  "type":"integer",
+                  "minimum":1
+               },
+               "limit":{
+                  "type":"integer",
+                  "minimum":1
+               },
+               "totalPages":{
+                  "type":"integer",
+                  "minimum":1
+               }
+            }
+         }
+      }
+   }
+}

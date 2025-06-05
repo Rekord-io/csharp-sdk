@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34622.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RekordRestClient", "RekordSDK\RekordRestClient.csproj", "{0E04A7CD-0610-472A-968F-F84981A48ED7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rekord.Api.Test", "Rekord.Api.Test\Rekord.Api.Test.csproj", "{77AEF925-6407-4259-A658-6C69CDC9FCAA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0E04A7CD-0610-472A-968F-F84981A48ED7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E04A7CD-0610-472A-968F-F84981A48ED7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E04A7CD-0610-472A-968F-F84981A48ED7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E04A7CD-0610-472A-968F-F84981A48ED7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77AEF925-6407-4259-A658-6C69CDC9FCAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77AEF925-6407-4259-A658-6C69CDC9FCAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77AEF925-6407-4259-A658-6C69CDC9FCAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77AEF925-6407-4259-A658-6C69CDC9FCAA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0EBD5EA5-BB2D-4236-B4D6-10BE4DC02CE2}
+	EndGlobalSection
+EndGlobal
