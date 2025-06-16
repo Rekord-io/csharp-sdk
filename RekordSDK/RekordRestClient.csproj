@@ -8,6 +8,18 @@
     <RecordClientClassName>RekordRestClient</RecordClientClassName>
     <RecordClientNamespace>RekordRest</RecordClientNamespace>
     <RecordClientOutputDirectory>RekordRestClient</RecordClientOutputDirectory>
+    <PlatformTarget>x86</PlatformTarget>
+    <!-- NuGet Package Properties -->
+    <PackageId>Rekord.SDK</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>Rekord</Authors>
+    <Company>Rekord</Company>
+    <Description>A SDK library for integrating with Rekord</Description>
+    <RepositoryUrl>https://github.com/Rekord-io/sdk-csharp</RepositoryUrl>
+    <PackageTags>sdk;api;Rekord</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
@@ -29,6 +41,7 @@
 
   <ItemGroup>
     <Folder Include="RekordRestClient\" />
+    <None Include="README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
   <Target Name="generateRecordClient" BeforeTargets="CoreCompile" Inputs="$(RecordOpenApiSpecLocation)" Outputs="$(RecordClientOutputDirectory)\$(RecordClientClassName).cs">
