@@ -167,8 +167,8 @@ This defines the data needed to create a workspace:
 ## WorkspaceDELETEAsync Method
 This asynchronous method handles the deletion of a workspace. You provide the ID of the workspace you want to remove, and the method initiates its deletion.
 
-## WorkspacePUTAsync
-This asynchronous method handles the update of a workspace.  You provide the ID of the workspace you want to update. 
+## WorkspacePUTAsync Method
+This asynchronous method handles the update of a workspace. You provide the ID of the workspace you want to update. 
 
 Paramters: 
 * Name: name for the workspace
