@@ -51,13 +51,13 @@ httpClient.BaseAddress = new Uri("https://api.rekord.example.com/"); // Replace 
 var rekordClient = new RekordRestClient("v1", httpClient);
 
 // Now 'rekordClient' is ready to make API calls, e.g.:
-// var response = await rekordClient.SomeApiMethodAsync(someParameters);
+// var response = await rekordClient.RekordGETAsync("d4522e96-acee-4867-826f-89bd1433c2f9");
 ```
 
 **Explanation:**
 
 * **NuGet Package:** The SDK is distributed as a NuGet package named `Rekord.SDK`. It is publicly hosted on GitHub Packages, meaning you'll need to add the specific GitHub NuGet feed to your project's package sources to be able to install it.
-* **`HttpClient` Initialization:** An instance of `HttpClient` is used to manage HTTP requests and responses. It's recommended to reuse a single `HttpClient` instance throughout the lifetime of your application for performance reasons.
+* **`HttpClient` Initialization:** An instance of `HttpClient` is used to manage HTTP requests and responses.
 * **Authentication Token:** The `token` variable should hold your valid Cognito ID Token. This token is crucial for authenticating your requests with the Rekord API.
 * **`Authorization` Header:** The `DefaultRequestHeaders.Add("Authorization", token)` line attaches the bearer token to all subsequent requests made by this `HttpClient` instance, as required by the Rekord API for authentication.
 * **`BaseAddress`:** Set this to the root URL of your Rekord API endpoint.
@@ -80,40 +80,37 @@ Parameters:
 * workspace (string, optional): Filters Rekords by their workspace ID.
 
 Returns:
-Task<PaginatedRekordResponse>: A task representing the asynchronous operation, which resolves to a PaginatedRekordResponse. This response object includes a collection of Rekord items for the current page, along with pagination metadata like total items, page number, limit, and totalPages.
+A task representing the asynchronous operation, which resolves to a PaginatedRekordResponse. This response object includes a collection of Rekord items for the current page, along with pagination metadata like total items, page number, limit, and totalPages.
 
 ### RekordGETAsync Method
 Retrieves a single Rekord by its unique identifier.
 
 Parameters:
-id (string): The unique ID of the Rekord you want to retrieve.
-Returns:
+* id (string): The unique ID of the Rekord you want to retrieve.
 
-Task<Rekord>: A task representing the asynchronous operation, which resolves to the Rekord object matching the provided ID.
+Returns:
+A task representing the asynchronous operation, which resolves to the Rekord object matching the provided ID.
 
 ### MetaAsync Method
 Retrieves the metadata of a specific Rekord by its unique identifier. This method returns a full Rekord object, where the metadata properties are populated.
 
 Parameters:
+* id (string): The unique ID of the Rekord whose metadata you want to retrieve.
 
-id (string): The unique ID of the Rekord whose metadata you want to retrieve.
 Returns:
-
-Task<Rekord>: A task representing the asynchronous operation, which resolves to a Rekord object containing the metadata for the specified ID.
+A task representing the asynchronous operation, which resolves to a Rekord object containing the metadata for the specified ID.
 
 ## RekordPOSTAsync Method
 Creates a new Rekord by submitting its content and associated metadata to the Rekord API.
 
 Parameters:
+* body (RekordRequest): An object containing the details for the new Rekord.
 
-body (RekordRequest): An object containing the details for the new Rekord.
-Returns:
-
-Task<Rekord>: The newly created Rekord object upon successful creation.
+Return:
+The newly created Rekord object upon successful creation.
 
 RekordRequest Class
 Defines the structure of the request body used to create a new Rekord.
-
 Properties:
 
 * Payload (object): The actual content of the Rekord (can be any serializable object).
@@ -129,11 +126,9 @@ Properties:
 Generates a signed URL for uploading a file to S3, enabling secure direct uploads.
 
 Parameters:
-
-body (Body): An object containing details necessary to generate the signed URL, such as the desired file key, content type, and workspace ID.
+* body (Body): An object containing details necessary to generate the signed URL, such as the desired file key, content type, and workspace ID.
 Returns:
-
-Task<Response2>: A task representing the asynchronous operation, which resolves to a Response2 object containing the signed URL and potentially other upload-related information.
+A task representing the asynchronous operation, which resolves to a Response2 object containing the signed URL and potentially other upload-related information.
 
 
 Body Class
@@ -147,37 +142,33 @@ Properties:
 Retrieves a signed URL for accessing a file previously uploaded to an S3 bucket, identified by its Rekord ID.
 
 Parameters:
-
-id (string): The unique ID of the Rekord associated with the file you want to retrieve.
+* id (string): The unique ID of the Rekord associated with the file you want to retrieve.
 Returns:
-
-Task<Response3>: A task representing the asynchronous operation, which resolves to a Response3 object containing the signed URL to the file in the S3 bucket.
+A task representing the asynchronous operation, which resolves to a Response3 object containing the signed URL to the file in the S3 bucket.
 
 ## WorkspaceGETAllAsync Method
 Retrieves a paginated list of all available workspaces.
 
 Parameters:
+* page (string, optional): The page number to retrieve (defaults to 1).
+* limit (string, optional): The number of items per page (defaults to 10).
 
-page (string, optional): The page number to retrieve (defaults to 1).
-limit (string, optional): The number of items per page (defaults to 10).
 Returns:
-
-Task<PaginatedWorkspaceResponse>: A task representing the asynchronous operation, which resolves to a PaginatedWorkspaceResponse containing the requested workspaces and pagination metadata.
+A task representing the asynchronous operation, which resolves to a PaginatedWorkspaceResponse containing the requested workspaces and pagination metadata.
 
 ## WorkspacePOSTAsync Method
 This asynchronous method is designed to create a new workspace. It takes a WorkspaceRequest as input, detailing the workspace's properties. Upon successful creation, it returns the new Workspace object. Be aware it can throw an ApiException for server-side errors.
 
 WorkspaceRequest Details
 This defines the data needed to create a workspace:
-
 * Name: The required name for the workspace (cannot be empty).
 * Blockchain: An optional blockchain code to associate with the workspace.
 
 ## WorkspaceDELETEAsync Method
 This asynchronous method handles the deletion of a workspace. You provide the ID of the workspace you want to remove, and the method initiates its deletion.
 
-## WorkspacePUTAsync
-This asynchronous method handles the update of a workspace.  You provide the ID of the workspace you want to update. 
+## WorkspacePUTAsync Method
+This asynchronous method handles the update of a workspace. You provide the ID of the workspace you want to update. 
 
 Paramters: 
 * Name: name for the workspace
