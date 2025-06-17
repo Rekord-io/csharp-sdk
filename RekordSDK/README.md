@@ -14,10 +14,12 @@ To install it, you need to add the GitHub Packages source to your NuGet configur
 <?xml version="1.0" encoding="utf-8"?>
 <configuration>
   <packageSources>
-    <add key="github" value="https://nuget.pkg.github.com/Rekord-io/index.json" />
+    <add key="github" value="https://nuget.pkg.github.com/your-github-org/index.json" />
+    <add key="nuget.org" value="https://api.nuget.org/v3/index.json" />
   </packageSources>
 </configuration>
 ```
+TODO: add right config
 
 Once the source is configured, you can install the package using the .NET CLI:
 
