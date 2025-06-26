@@ -607,6 +607,7 @@
             "description": "Type of payload (e.g., JSON, PDF)",
             "example": "JSON"
           },
+          "payload": {
             "type": "object",
             "description": "The actual content of the rekord",
             "example": {
