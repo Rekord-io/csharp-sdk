@@ -607,6 +607,13 @@
             "description": "Type of payload (e.g., JSON, PDF)",
             "example": "JSON"
           },
+            "type": "object",
+            "description": "The actual content of the rekord",
+            "example": {
+              "key1": "value1",
+              "key2": "value2"
+            }
+          },
           "file": {
             "type": "string",
             "description": "filename associated with this rekord",

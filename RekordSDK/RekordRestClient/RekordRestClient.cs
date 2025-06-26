@@ -1390,6 +1390,12 @@ namespace RekordRest
         public RekordPayloadType PayloadType { get; set; }
 
         /// <summary>
+        /// The actual content of the rekord
+        /// </summary>
+        [Newtonsoft.Json.JsonProperty("payload", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public object Payload { get; set; }
+
+        /// <summary>
         /// filename associated with this rekord
         /// </summary>
         [Newtonsoft.Json.JsonProperty("file", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
