@@ -68,7 +68,7 @@ With `rekordClient` initialized, you can now call the various methods exposed by
 ---
 ## Methods
 
-### RekordGETAllAsync Method
+### ListRekordsAsync Method
 Retrieves a paginated list of Rekords, with optional filtering by group and workspace. Each Rekord represents a unique record with associated metadata, hashes, and blockchain details.
 
 Parameters:
@@ -80,7 +80,7 @@ Parameters:
 Returns:
 A task representing the asynchronous operation, which resolves to a PaginatedRekordResponse. This response object includes a collection of Rekord items for the current page, along with pagination metadata like total items, page number, limit, and totalPages.
 
-### RekordGETAsync Method
+### GetRekordAsync Method
 Retrieves a single Rekord by its unique identifier.
 
 Parameters:
@@ -89,7 +89,7 @@ Parameters:
 Returns:
 A task representing the asynchronous operation, which resolves to the Rekord object matching the provided ID.
 
-### MetaAsync Method
+### GetRekordMetaAsync Method
 Retrieves the metadata of a specific Rekord by its unique identifier. This method returns a full Rekord object, where the metadata properties are populated.
 
 Parameters:
@@ -98,7 +98,7 @@ Parameters:
 Returns:
 A task representing the asynchronous operation, which resolves to a Rekord object containing the metadata for the specified ID.
 
-## RekordPOSTAsync Method
+## CreateRekordAsync Method
 Creates a new Rekord by submitting its content and associated metadata to the Rekord API.
 
 Parameters:
@@ -120,7 +120,7 @@ Properties:
 * PayloadType (RekordRequestPayloadType): Specifies the type of content within the payload (e.g., JSON, FILE).
 * File (string, optional): If PayloadType is FILE, this is the file key from the upload-URL endpoint.
 
-## PayloadUrlPOSTAsync Method
+## CreatePayloadURLAsync Method
 Generates a signed URL for uploading a file to S3, enabling secure direct uploads.
 
 Parameters:
@@ -136,7 +136,7 @@ Properties:
 * ContentType (string, optional): The MIME type of the file being uploaded (e.g., application/pdf, image/jpeg).
 * Workspace (string): The ID of the workspace where the file will be associated. This is always required.
 
-## PayloadUrlGETAsync Method
+## GetPayloadURLAsync Method
 Retrieves a signed URL for accessing a file previously uploaded to an S3 bucket, identified by its Rekord ID.
 
 Parameters:
@@ -144,7 +144,7 @@ Parameters:
 Returns:
 A task representing the asynchronous operation, which resolves to a Response3 object containing the signed URL to the file in the S3 bucket.
 
-## WorkspaceGETAllAsync Method
+## ListWorkspacesAsync Method
 Retrieves a paginated list of all available workspaces.
 
 Parameters:
@@ -154,7 +154,16 @@ Parameters:
 Returns:
 A task representing the asynchronous operation, which resolves to a PaginatedWorkspaceResponse containing the requested workspaces and pagination metadata.
 
-## WorkspacePOSTAsync Method
+## GetWorkspaceAsync Method
+Retrieves a single workspace by its unique identifier.
+
+Parameters:
+* id (string): The unique ID of the workspace you want to retrieve.
+
+Returns:
+A task representing the asynchronous operation, which resolves to the Workspace object matching the provided ID.
+
+## CreateWorkspaceAsync Method
 This asynchronous method is designed to create a new workspace. It takes a WorkspaceRequest as input, detailing the workspace's properties. Upon successful creation, it returns the new Workspace object. Be aware it can throw an ApiException for server-side errors.
 
 WorkspaceRequest Details
@@ -162,10 +171,10 @@ This defines the data needed to create a workspace:
 * Name: The required name for the workspace (cannot be empty).
 * Blockchain: An optional blockchain code to associate with the workspace.
 
-## WorkspaceDELETEAsync Method
+## DeleteWorkspaceAsync Method
 This asynchronous method handles the deletion of a workspace. You provide the ID of the workspace you want to remove, and the method initiates its deletion.
 
-## WorkspacePUTAsync Method
+## UpdateWorkspaceAsync Method
 This asynchronous method handles the update of a workspace. You provide the ID of the workspace you want to update. 
 
 Paramters: 

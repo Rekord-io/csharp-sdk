@@ -8,8 +8,8 @@
   "paths": {
     "/rekord": {
       "get": {
-        "operationId": "rekordGETAll",
         "description": "",
+        "operationId": "listRekords",
         "parameters": [
           {
             "name": "page",
@@ -59,6 +59,7 @@
       },
       "post": {
         "description": "",
+        "operationId": "createRekord",
         "responses": {
           "201": {
             "description": "Rekord successfully created",
@@ -105,6 +106,7 @@
       },
       "put": {
         "description": "",
+        "operationId": "updateRekord",
         "responses": {
           "200": {
             "description": "OK"
@@ -118,6 +120,7 @@
     "/rekord/{id}": {
       "get": {
         "description": "",
+        "operationId": "getRekord",
         "parameters": [
           {
             "name": "id",
@@ -149,6 +152,7 @@
     "/rekord/{id}/meta": {
       "get": {
         "description": "",
+        "operationId": "getRekordMeta",
         "parameters": [
           {
             "name": "id",
@@ -166,7 +170,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Rekord"
+                  "$ref": "#/components/schemas/RekordMeta"
                 }
               }
             }
@@ -180,6 +184,7 @@
     "/rekord/payload-url": {
       "post": {
         "description": "",
+        "operationId": "createPayloadURL",
         "responses": {
           "201": {
             "description": "Url successfully created",
@@ -242,6 +247,7 @@
     "/rekord/{id}/payload-url": {
       "get": {
         "description": "",
+        "operationId": "getPayloadURL",
         "parameters": [
           {
             "name": "id",
@@ -280,8 +286,8 @@
     },
     "/workspace": {
       "get": {
-        "operationId": "workspaceGETAll",
         "description": "",
+        "operationId": "listWorkspaces",
         "parameters": [
           {
             "name": "page",
@@ -316,6 +322,7 @@
       "post": {
         "summary": "Creates a workspace",
         "description": "",
+        "operationId": "createWorkspace",
         "responses": {
           "201": {
             "description": "Workspace successfully created",
@@ -364,6 +371,7 @@
     "/workspace/{id}": {
       "get": {
         "description": "",
+        "operationId": "getWorkspace",
         "parameters": [
           {
             "name": "id",
@@ -394,6 +402,7 @@
       "delete": {
         "summary": "Deletes a workspace",
         "description": "",
+        "operationId": "deleteWorkspace",
         "parameters": [
           {
             "name": "id",
@@ -423,6 +432,7 @@
       "put": {
         "summary": "Updates a workspace",
         "description": "",
+        "operationId": "updateWorkspace",
         "parameters": [
           {
             "name": "id",
@@ -620,6 +630,133 @@
             "description": "filename associated with this rekord",
             "example": "file.pdf",
             "nullable": true
+          },
+          "rekordStatus": {
+            "type": "string",
+            "enum": [
+              "PENDING",
+              "SUBMITTED",
+              "RECORDED",
+              "FAILED"
+            ],
+            "description": "Status (e.g., RECORDED, SUBMITTED)",
+            "example": "JSON"
+          }
+        }
+      },
+      "RekordMeta": {
+        "type": "object",
+        "required": [
+          "id",
+          "issuedAt",
+          "workspace",
+          "description",
+          "payloadType"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "createdBy": {
+            "type": "string"
+          },
+          "globalHash": {
+            "type": "string"
+          },
+          "hashes": {
+            "type": "object",
+            "description": "Contains rekord hash values",
+            "properties": {
+              "globalHash": {
+                "type": "string",
+                "description": "Global hash value"
+              },
+              "payloadHash": {
+                "type": "string",
+                "description": "Payload hash value"
+              },
+              "fileHash": {
+                "type": "string",
+                "description": "File hash value",
+                "nullable": true
+              }
+            },
+            "required": [
+              "globalHash",
+              "payloadHash"
+            ]
+          },
+          "workspace": {
+            "type": "string"
+          },
+          "customer": {
+            "type": "string"
+          },
+          "blockchainMeta": {
+            "type": "object",
+            "nullable": true,
+            "description": "Contains bc metadata associated with the rekord",
+            "properties": {
+              "transactionId": {
+                "type": "string",
+                "description": "ID of the transaction"
+              },
+              "transactionTs": {
+                "type": "string",
+                "description": "Timestamp of the transaction"
+              },
+              "merklePath": {
+                "type": "string",
+                "description": "Last merkle path"
+              }
+            },
+            "required": [
+              "transactionId",
+              "transactionTs"
+            ]
+          },
+          "issuedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the rekord was issued",
+            "example": "2025-03-02T18:43:01.000Z"
+          },
+          "group": {
+            "type": "string",
+            "description": "Source of the rekord",
+            "example": "my source"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the rekord",
+            "example": "description example"
+          },
+          "originalFileName": {
+            "type": "string",
+            "nullable": true,
+            "description": "Original file name if applicable",
+            "example": "filename.pdf"
+          },
+          "payloadType": {
+            "type": "string",
+            "enum": [
+              "JSON",
+              "FILE"
+            ],
+            "description": "Type of payload (e.g., JSON, PDF)",
+            "example": "JSON"
+          },
+          "rekordStatus": {
+            "type": "string",
+            "enum": [
+              "PENDING",
+              "SUBMITTED",
+              "RECORDED",
+              "FAILED"
+            ],
+            "description": "Status (e.g., RECORDED, SUBMITTED)",
+            "example": "JSON"
           }
         }
       },
@@ -793,7 +930,7 @@
           "items": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Rekord"
+              "$ref": "#/components/schemas/RekordMeta"
             }
           },
           "total": {

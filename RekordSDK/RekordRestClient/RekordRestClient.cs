@@ -78,9 +78,9 @@ namespace RekordRest
         /// <param name="workspace">workspace id</param>
         /// <returns>All rekords</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<PaginatedRekordResponse> RekordGETAllAsync(string page, string limit, string group, string workspace)
+        public virtual System.Threading.Tasks.Task<PaginatedRekordResponse> ListRekordsAsync(string page, string limit, string group, string workspace)
         {
-            return RekordGETAllAsync(page, limit, group, workspace, System.Threading.CancellationToken.None);
+            return ListRekordsAsync(page, limit, group, workspace, System.Threading.CancellationToken.None);
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
@@ -90,7 +90,7 @@ namespace RekordRest
         /// <param name="workspace">workspace id</param>
         /// <returns>All rekords</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<PaginatedRekordResponse> RekordGETAllAsync(string page, string limit, string group, string workspace, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<PaginatedRekordResponse> ListRekordsAsync(string page, string limit, string group, string workspace, System.Threading.CancellationToken cancellationToken)
         {
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -178,15 +178,15 @@ namespace RekordRest
 
         /// <returns>Rekord successfully created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Rekord> RekordPOSTAsync(RekordRequest body)
+        public virtual System.Threading.Tasks.Task<Rekord> CreateRekordAsync(RekordRequest body)
         {
-            return RekordPOSTAsync(body, System.Threading.CancellationToken.None);
+            return CreateRekordAsync(body, System.Threading.CancellationToken.None);
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Rekord successfully created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Rekord> RekordPOSTAsync(RekordRequest body, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<Rekord> CreateRekordAsync(RekordRequest body, System.Threading.CancellationToken cancellationToken)
         {
             if (body == null)
                 throw new System.ArgumentNullException("body");
@@ -273,15 +273,15 @@ namespace RekordRest
 
         /// <returns>OK</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task RekordPUTAsync()
+        public virtual System.Threading.Tasks.Task UpdateRekordAsync()
         {
-            return RekordPUTAsync(System.Threading.CancellationToken.None);
+            return UpdateRekordAsync(System.Threading.CancellationToken.None);
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>OK</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task RekordPUTAsync(System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task UpdateRekordAsync(System.Threading.CancellationToken cancellationToken)
         {
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -353,16 +353,16 @@ namespace RekordRest
         /// <param name="id">ID of the rekord</param>
         /// <returns>Rekord by ID</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Rekord> RekordGETAsync(string id)
+        public virtual System.Threading.Tasks.Task<Rekord> GetRekordAsync(string id)
         {
-            return RekordGETAsync(id, System.Threading.CancellationToken.None);
+            return GetRekordAsync(id, System.Threading.CancellationToken.None);
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <param name="id">ID of the rekord</param>
         /// <returns>Rekord by ID</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Rekord> RekordGETAsync(string id, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<Rekord> GetRekordAsync(string id, System.Threading.CancellationToken cancellationToken)
         {
             if (id == null)
                 throw new System.ArgumentNullException("id");
@@ -443,16 +443,16 @@ namespace RekordRest
         /// <param name="id">ID of the rekord</param>
         /// <returns>Metadata of a rekord by ID</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Rekord> MetaAsync(string id)
+        public virtual System.Threading.Tasks.Task<RekordMeta> GetRekordMetaAsync(string id)
         {
-            return MetaAsync(id, System.Threading.CancellationToken.None);
+            return GetRekordMetaAsync(id, System.Threading.CancellationToken.None);
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <param name="id">ID of the rekord</param>
         /// <returns>Metadata of a rekord by ID</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Rekord> MetaAsync(string id, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<RekordMeta> GetRekordMetaAsync(string id, System.Threading.CancellationToken cancellationToken)
         {
             if (id == null)
                 throw new System.ArgumentNullException("id");
@@ -498,7 +498,7 @@ namespace RekordRest
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Rekord>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<RekordMeta>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -533,15 +533,15 @@ namespace RekordRest
 
         /// <returns>Url successfully created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Response2> PayloadUrlPOSTAsync(Body body)
+        public virtual System.Threading.Tasks.Task<Response2> CreatePayloadURLAsync(Body body)
         {
-            return PayloadUrlPOSTAsync(body, System.Threading.CancellationToken.None);
+            return CreatePayloadURLAsync(body, System.Threading.CancellationToken.None);
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Url successfully created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Response2> PayloadUrlPOSTAsync(Body body, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<Response2> CreatePayloadURLAsync(Body body, System.Threading.CancellationToken cancellationToken)
         {
             if (body == null)
                 throw new System.ArgumentNullException("body");
@@ -624,15 +624,15 @@ namespace RekordRest
 
         /// <returns>Successful</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Response3> PayloadUrlGETAsync(string id)
+        public virtual System.Threading.Tasks.Task<Response3> GetPayloadURLAsync(string id)
         {
-            return PayloadUrlGETAsync(id, System.Threading.CancellationToken.None);
+            return GetPayloadURLAsync(id, System.Threading.CancellationToken.None);
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Successful</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Response3> PayloadUrlGETAsync(string id, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<Response3> GetPayloadURLAsync(string id, System.Threading.CancellationToken cancellationToken)
         {
             if (id == null)
                 throw new System.ArgumentNullException("id");
@@ -715,9 +715,9 @@ namespace RekordRest
         /// <param name="limit">Page size (default 10)</param>
         /// <returns>All workspaces</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<PaginatedWorkspaceResponse> WorkspaceGETAllAsync(string page, string limit)
+        public virtual System.Threading.Tasks.Task<PaginatedWorkspaceResponse> ListWorkspacesAsync(string page, string limit)
         {
-            return WorkspaceGETAllAsync(page, limit, System.Threading.CancellationToken.None);
+            return ListWorkspacesAsync(page, limit, System.Threading.CancellationToken.None);
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
@@ -725,7 +725,7 @@ namespace RekordRest
         /// <param name="limit">Page size (default 10)</param>
         /// <returns>All workspaces</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<PaginatedWorkspaceResponse> WorkspaceGETAllAsync(string page, string limit, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<PaginatedWorkspaceResponse> ListWorkspacesAsync(string page, string limit, System.Threading.CancellationToken cancellationToken)
         {
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -808,9 +808,9 @@ namespace RekordRest
         /// </summary>
         /// <returns>Workspace successfully created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Workspace> WorkspacePOSTAsync(WorkspaceRequest body)
+        public virtual System.Threading.Tasks.Task<Workspace> CreateWorkspaceAsync(WorkspaceRequest body)
         {
-            return WorkspacePOSTAsync(body, System.Threading.CancellationToken.None);
+            return CreateWorkspaceAsync(body, System.Threading.CancellationToken.None);
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
@@ -819,7 +819,7 @@ namespace RekordRest
         /// </summary>
         /// <returns>Workspace successfully created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Workspace> WorkspacePOSTAsync(WorkspaceRequest body, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<Workspace> CreateWorkspaceAsync(WorkspaceRequest body, System.Threading.CancellationToken cancellationToken)
         {
             if (body == null)
                 throw new System.ArgumentNullException("body");
@@ -907,16 +907,16 @@ namespace RekordRest
         /// <param name="id">ID of the workspace</param>
         /// <returns>Workspace found</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Workspace> WorkspaceGETAsync(string id)
+        public virtual System.Threading.Tasks.Task<Workspace> GetWorkspaceAsync(string id)
         {
-            return WorkspaceGETAsync(id, System.Threading.CancellationToken.None);
+            return GetWorkspaceAsync(id, System.Threading.CancellationToken.None);
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <param name="id">ID of the workspace</param>
         /// <returns>Workspace found</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Workspace> WorkspaceGETAsync(string id, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<Workspace> GetWorkspaceAsync(string id, System.Threading.CancellationToken cancellationToken)
         {
             if (id == null)
                 throw new System.ArgumentNullException("id");
@@ -1000,9 +1000,9 @@ namespace RekordRest
         /// <param name="id">ID of the workspace to be deleted</param>
         /// <returns>Workspace deleted (No Content)</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task WorkspaceDELETEAsync(string id)
+        public virtual System.Threading.Tasks.Task DeleteWorkspaceAsync(string id)
         {
-            return WorkspaceDELETEAsync(id, System.Threading.CancellationToken.None);
+            return DeleteWorkspaceAsync(id, System.Threading.CancellationToken.None);
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
@@ -1012,7 +1012,7 @@ namespace RekordRest
         /// <param name="id">ID of the workspace to be deleted</param>
         /// <returns>Workspace deleted (No Content)</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task WorkspaceDELETEAsync(string id, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task DeleteWorkspaceAsync(string id, System.Threading.CancellationToken cancellationToken)
         {
             if (id == null)
                 throw new System.ArgumentNullException("id");
@@ -1102,9 +1102,9 @@ namespace RekordRest
         /// <param name="id">ID of the workspace to be updated</param>
         /// <returns>Workspace updated</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Workspace> WorkspacePUTAsync(string id, WorkspaceRequest body)
+        public virtual System.Threading.Tasks.Task<Workspace> UpdateWorkspaceAsync(string id, WorkspaceRequest body)
         {
-            return WorkspacePUTAsync(id, body, System.Threading.CancellationToken.None);
+            return UpdateWorkspaceAsync(id, body, System.Threading.CancellationToken.None);
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
@@ -1114,7 +1114,7 @@ namespace RekordRest
         /// <param name="id">ID of the workspace to be updated</param>
         /// <returns>Workspace updated</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Workspace> WorkspacePUTAsync(string id, WorkspaceRequest body, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<Workspace> UpdateWorkspaceAsync(string id, WorkspaceRequest body, System.Threading.CancellationToken cancellationToken)
         {
             if (id == null)
                 throw new System.ArgumentNullException("id");
@@ -1401,6 +1401,97 @@ namespace RekordRest
         [Newtonsoft.Json.JsonProperty("file", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string File { get; set; }
 
+        /// <summary>
+        /// Status (e.g., RECORDED, SUBMITTED)
+        /// </summary>
+        [Newtonsoft.Json.JsonProperty("rekordStatus", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+        public RekordStatus RekordStatus { get; set; }
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties;
+
+        [Newtonsoft.Json.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class RekordMeta
+    {
+        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string Id { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("createdBy", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string CreatedBy { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("globalHash", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string GlobalHash { get; set; }
+
+        /// <summary>
+        /// Contains rekord hash values
+        /// </summary>
+        [Newtonsoft.Json.JsonProperty("hashes", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public Hashes2 Hashes { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("workspace", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string Workspace { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("customer", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Customer { get; set; }
+
+        /// <summary>
+        /// Contains bc metadata associated with the rekord
+        /// </summary>
+        [Newtonsoft.Json.JsonProperty("blockchainMeta", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public BlockchainMeta3 BlockchainMeta { get; set; }
+
+        /// <summary>
+        /// Timestamp when the rekord was issued
+        /// </summary>
+        [Newtonsoft.Json.JsonProperty("issuedAt", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public System.DateTimeOffset IssuedAt { get; set; }
+
+        /// <summary>
+        /// Source of the rekord
+        /// </summary>
+        [Newtonsoft.Json.JsonProperty("group", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Group { get; set; }
+
+        /// <summary>
+        /// Description of the rekord
+        /// </summary>
+        [Newtonsoft.Json.JsonProperty("description", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string Description { get; set; }
+
+        /// <summary>
+        /// Original file name if applicable
+        /// </summary>
+        [Newtonsoft.Json.JsonProperty("originalFileName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string OriginalFileName { get; set; }
+
+        /// <summary>
+        /// Type of payload (e.g., JSON, PDF)
+        /// </summary>
+        [Newtonsoft.Json.JsonProperty("payloadType", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+        public RekordMetaPayloadType PayloadType { get; set; }
+
+        /// <summary>
+        /// Status (e.g., RECORDED, SUBMITTED)
+        /// </summary>
+        [Newtonsoft.Json.JsonProperty("rekordStatus", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+        public RekordMetaRekordStatus RekordStatus { get; set; }
+
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties;
 
         [Newtonsoft.Json.JsonExtensionData]
@@ -1599,7 +1690,7 @@ namespace RekordRest
     {
         [Newtonsoft.Json.JsonProperty("items", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.Generic.ICollection<Rekord> Items { get; set; } = new System.Collections.ObjectModel.Collection<Rekord>();
+        public System.Collections.Generic.ICollection<RekordMeta> Items { get; set; } = new System.Collections.ObjectModel.Collection<RekordMeta>();
 
         [Newtonsoft.Json.JsonProperty("total", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Range(0, int.MaxValue)]
@@ -1838,6 +1929,122 @@ namespace RekordRest
 
         [System.Runtime.Serialization.EnumMember(Value = @"FILE")]
         FILE = 1,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum RekordStatus
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"PENDING")]
+        PENDING = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"SUBMITTED")]
+        SUBMITTED = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"RECORDED")]
+        RECORDED = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"FAILED")]
+        FAILED = 3,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class Hashes2
+    {
+        /// <summary>
+        /// Global hash value
+        /// </summary>
+        [Newtonsoft.Json.JsonProperty("globalHash", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string GlobalHash { get; set; }
+
+        /// <summary>
+        /// Payload hash value
+        /// </summary>
+        [Newtonsoft.Json.JsonProperty("payloadHash", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string PayloadHash { get; set; }
+
+        /// <summary>
+        /// File hash value
+        /// </summary>
+        [Newtonsoft.Json.JsonProperty("fileHash", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string FileHash { get; set; }
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties;
+
+        [Newtonsoft.Json.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class BlockchainMeta3
+    {
+        /// <summary>
+        /// ID of the transaction
+        /// </summary>
+        [Newtonsoft.Json.JsonProperty("transactionId", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string TransactionId { get; set; }
+
+        /// <summary>
+        /// Timestamp of the transaction
+        /// </summary>
+        [Newtonsoft.Json.JsonProperty("transactionTs", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string TransactionTs { get; set; }
+
+        /// <summary>
+        /// Last merkle path
+        /// </summary>
+        [Newtonsoft.Json.JsonProperty("merklePath", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string MerklePath { get; set; }
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties;
+
+        [Newtonsoft.Json.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum RekordMetaPayloadType
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"JSON")]
+        JSON = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"FILE")]
+        FILE = 1,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum RekordMetaRekordStatus
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"PENDING")]
+        PENDING = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"SUBMITTED")]
+        SUBMITTED = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"RECORDED")]
+        RECORDED = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"FAILED")]
+        FAILED = 3,
 
     }
 

@@ -40,8 +40,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="RekordRestClient\" />
     <None Include="README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="RekordRestClient\" />
   </ItemGroup>
 
   <Target Name="generateRecordClient" BeforeTargets="CoreCompile" Inputs="$(RecordOpenApiSpecLocation)" Outputs="$(RecordClientOutputDirectory)\$(RecordClientClassName).cs">
