@@ -11,7 +11,7 @@
     <!-- NuGet Package Properties -->
     <PackageId>Rekord.SDK</PackageId>
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <Version>1.0.3</Version>
+    <Version>1.2.0</Version>
     <Authors>Rekord</Authors>
     <Company>Rekord</Company>
     <Description>A SDK library for integrating with Rekord</Description>
@@ -23,6 +23,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AWSSDK.CognitoIdentityProvider" Version="4.0.2" />
     <PackageReference Include="Microsoft.Extensions.ApiDescription.Client" Version="7.0.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
