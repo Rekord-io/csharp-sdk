@@ -7,9 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RekordRestClient", "RekordS
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rekord.Api.Test", "Rekord.Api.Test\Rekord.Api.Test.csproj", "{77AEF925-6407-4259-A658-6C69CDC9FCAA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rekord.Test.Integration", "Rekord.Test.Integration\Rekord.Test.Integration.csproj", "{D507C04A-AC46-4BEE-833F-5500AA585F8F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreateRekords", "CreateRekords\CreateRekords.csproj", "{5329FC8B-2B66-4166-ABDA-088878E686D7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreateRekords", "CreateRekords\CreateRekords.csproj", "{5329FC8B-2B66-4166-ABDA-088878E686D7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,10 +23,6 @@ Global
 		{77AEF925-6407-4259-A658-6C69CDC9FCAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77AEF925-6407-4259-A658-6C69CDC9FCAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77AEF925-6407-4259-A658-6C69CDC9FCAA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D507C04A-AC46-4BEE-833F-5500AA585F8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D507C04A-AC46-4BEE-833F-5500AA585F8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D507C04A-AC46-4BEE-833F-5500AA585F8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D507C04A-AC46-4BEE-833F-5500AA585F8F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5329FC8B-2B66-4166-ABDA-088878E686D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5329FC8B-2B66-4166-ABDA-088878E686D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5329FC8B-2B66-4166-ABDA-088878E686D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
