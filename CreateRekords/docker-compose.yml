@@ -1,0 +1,10 @@
+services:
+  create-rekords:
+    build:
+      context: ..
+      dockerfile: CreateRekords/Dockerfile
+    image: create-rekords:latest
+    container_name: create-rekords-app
+    volumes:
+      - ./appsettings.local.json:/app/appsettings.json:ro
+    restart: "no"
