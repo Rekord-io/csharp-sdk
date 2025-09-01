@@ -48,13 +48,13 @@
     <Folder Include="RekordRestClient\" />
   </ItemGroup>
 
-  <Target Name="generateRecordClient" BeforeTargets="CoreCompile" Inputs="$(RecordOpenApiSpecLocation)" Outputs="$(RecordClientOutputDirectory)\$(RecordClientClassName).cs">
+  <!--<Target Name="generateRecordClient" BeforeTargets="CoreCompile" Inputs="$(RecordOpenApiSpecLocation)" Outputs="$(RecordClientOutputDirectory)\$(RecordClientClassName).cs">
     <Exec Command="$(NSwagExe) openapi2csclient /input:$(RecordOpenApiSpecLocation)  /classname:$(RecordClientClassName) /namespace:$(RecordClientNamespace) /output:$(RecordClientOutputDirectory)\$(RecordClientClassName).cs" ConsoleToMSBuild="true">
       <Output TaskParameter="ConsoleOutput" PropertyName="OutputOfExec" />
     </Exec>
   </Target>
   <Target Name="forceReGenerationOnRebuild" AfterTargets="CoreClean">
     <Delete Files="$(RecordClientOutputDirectory)\$(RecordClientClassName).cs"></Delete>
-  </Target>
+  </Target>-->
 
 </Project>
