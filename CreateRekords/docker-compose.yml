@@ -7,4 +7,4 @@ services:
     container_name: create-rekords-app
     volumes:
       - ./appsettings.local.json:/app/appsettings.json:ro
-    restart: "no"
+    restart: "unless-stopped"

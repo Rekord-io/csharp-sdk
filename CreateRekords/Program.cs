@@ -122,6 +122,8 @@ class Program
     var workspaces = await rekordClient.ListWorkspacesAsync(null, null);
     var workspace = workspaces.Items.FirstOrDefault();
 
+    int reloginAfter = 3_600_000 / (baseSleep + noiseRange);
+
     int i = 0;
     long createdNo = 0;
     while (true)
@@ -148,7 +150,7 @@ class Program
         var sleep = baseSleep + noise;
         Console.WriteLine($"Wait: {sleep}, created: {++createdNo}");
         await Task.Delay(sleep);
-        if (i > 1500)
+        if (i > reloginAfter)
         {
           // recreate client with new token
           rekordClient = await CreateClient();

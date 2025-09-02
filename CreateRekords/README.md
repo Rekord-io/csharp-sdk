@@ -1,6 +1,6 @@
 # CreateRekords - Dockerized .NET Application
 
-This application is containerized using Docker and provides three main execution modes for managing Rekord records.
+This example application is containerized using Docker and provides three main execution modes for managing Rekord records.
 
 ## Prerequisites
 
@@ -96,8 +96,8 @@ docker run --rm \
 - **Usage**: `create-loop [baseSleep] [noiseRange]`
 - **Description**: Creates records in an infinite loop with delays
 - **Parameters**:
-  - `baseSleep`: Base sleep time in milliseconds between records (optional, default: 120)
-  - `noiseRange`: Random noise range in milliseconds to add to base sleep (optional, default: 50)
+  - `baseSleep`: Base sleep time in milliseconds between records
+  - `noiseRange`: Random noise range in milliseconds to add to base sleep
 
 ### Create Once Mode
 - **Usage**: `create-once <count>`
