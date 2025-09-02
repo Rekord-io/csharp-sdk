@@ -9,6 +9,32 @@ This example application is containerized using Docker and provides three main e
 
 ## Quick Start
 
+### EC2 Instance Setup
+```bash
+# Login into EC2 Instance.
+ssh -i "dev-tester.pem" ec2-user@ec2-108-129-97-85.eu-west-1.compute.amazonaws.com
+```
+
+```bash
+# Move the CSharp folder over to EC2.
+scp -r -i "dev-tester.pem" ~/csharp-sdk/ ec2-user@ec2-108-129-97-85.eu-west-1.compute.amazonaws.com:~/
+```
+
+```bash
+# Install and configure Docker on EC2.
+sudo yum install docker -y
+sudo systemctl start docker
+sudo systemctl enable docker
+sudo usermod -a -G docker ec2-user
+newgrp docker
+
+# Install docker-compose
+sudo curl -L https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+
+# Run the application with 120ms delay and 30ms noise. This corresponds to approx 6-10 tx/sec.
+docker-compose run -d --rm create-rekords create-loop 120 30
+```
 ### 1. Build the Docker Image
 
 ```bash
