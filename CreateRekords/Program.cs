@@ -139,7 +139,7 @@ class Program
         {
           Description = "Serial",
           IssuedAt = DateTime.UtcNow,
-          Group = "SAMPLE",
+          Group = "group-default",
           OriginalFileName = "item.json",
           Workspace = new Guid(workspace!.Id),
           Payload = payload,
@@ -192,7 +192,7 @@ class Program
         {
           Description = "Serial",
           IssuedAt = DateTime.UtcNow,
-          Group = "SAMPLE",
+          Group = "group-default",
           OriginalFileName = "item.json",
           Workspace = new Guid(workspace!.Id),
           Payload = payload,
