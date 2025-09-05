@@ -10,11 +10,10 @@ namespace Rekord.Api.Test
     public RekordTestClient()
     {
       var httpClient = new HttpClient();
-      // token_id
       var token = "";
 
       httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-      rekordClient = new RekordRestClient("https://btdryd5731.execute-api.eu-west-1.amazonaws.com/rekord-web-application-sto-api-gw-stage", httpClient);
+      rekordClient = new RekordRestClient("", httpClient);
     }
 
     [TestMethod]
